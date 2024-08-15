@@ -9,7 +9,6 @@ money = 0
 cost = 0    # 定义商品价格
 count = 0   # 总共商品件数
 cost_list = []
-tem_cost = 0
 # 买99天东西的价格
 
 for day in range(1, 100):
