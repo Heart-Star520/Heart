@@ -33,13 +33,27 @@ while tem_get_user <= user_count:
     tem_get_name_2 += 1
 
 connent = 0  # 初始化循环控制变量
+connet1 = 1     # 初始化循环变量
 
 while connent < 1:  # 你可以调整这个条件来控制循环次数
     print("[———— 进入计分阶段 ————]")
     place_owner = int(input("哪位玩家是地主（输入玩家编号1,2,3,4...）：\n"))  # 定义地主
-    print("地主：", player_name[place_owner - 1])
+    for x in range(1, user_count + 1):    # 打印玩家职位
+        print(f"{player_name[place_owner - connet1]}", end=" | ")
+        connet1 += 1
+    print("")
+    for i in range(1, user_count + 1):
+        print("—————", end="")
 
-    every_end = str(input(f"[———— 游戏结束 ————]\n本次比赛地主 {player_name[place_owner - 1]} 赢了吗（输入y/n）？\n"))
+    print("")
+    connet1 = 0
+    for i in range(1, user_count + 1):
+        if i == place_owner - 1:
+            print(f"{player_name[place_owner - 1]}.地主", end="  ")
+        else:
+            print(f"黑奴", end="  ")
+
+    every_end = str(input(f"\n[———— 游戏结束 ————]\n本次比赛地主 {player_name[place_owner - 1]} 赢了吗（输入y/n）？\n"))
 
     if every_end == "y":
         every_get_count = int(input("地主赢了多少分（只需要输入地主 要的分 * 本局的翻倍数的结果）：\n"))
@@ -58,12 +72,14 @@ while connent < 1:  # 你可以调整这个条件来控制循环次数
     # 打印当前所有玩家的分数
     print(f"[———— 分数统计 ————]\n总共有 {user_count} 位玩家，现在玩家分别有积分：\n")
 
-    tem_get_user = 1  # 用于给玩家显示
     tem_get_name_2 = 0  # 用于输出列表名称
-    while tem_get_user <= user_count:
-        print(f"{player_name[tem_get_name_2]} ：{player_count[tem_get_name_2]}")
-        tem_get_user += 1
-        tem_get_name_2 += 1
+    for x in range(1, user_count + 1):
+        if x == place_owner:
+            print(f"{player_name[tem_get_name_2]}（✪本局地主✪） ：{player_count[tem_get_name_2]}")
+            tem_get_name_2 += 1
+        else:
+            print(f"{player_name[tem_get_name_2]}：{player_count[tem_get_name_2]}")
+            tem_get_name_2 += 1
 
     # 你可以根据需要增加更多逻辑，比如是否继续进行下一轮游戏
     continue_game = input("[———— 是否继续下一轮游戏(y/n) ————]\n")
